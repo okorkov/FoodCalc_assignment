@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :items
   resources :categories
 
+  match '/auth/:google_oauth2/callback' => 'sessions#google', via: [:get, :post]
+
 end
