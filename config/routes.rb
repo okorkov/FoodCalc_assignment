@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users do 
     resources :lists
   end
+  resources :sessions, only: [:create, :destroy]
   resources :items
   resources :categories
 

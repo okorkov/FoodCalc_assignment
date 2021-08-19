@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
 
+  include ApplicationHelper 
+
   def welcome
-    render json: {welcome: 'Welcome'}
+    @user = User.new
   end
+
 end

@@ -1,0 +1,36 @@
+<div class="welcome-page">
+
+  <h1 style="text-align: center; padding-top: 5%;">Welcome</h1>
+
+  <%if @error%>
+    <div class="alert alert-danger"><%=@error%></div>
+  <%end%>
+
+  <div style="justify-content: center; text-align: center; display:flex">
+    <div style="width: 50%; text-align: center; max-width: 700px; min-width: 400px;">
+      <%=form_tag sessions_path, class:'form-group' do%>
+        <%= text_field_tag :email, nil, class:'form-control', placeholder:'Email Address', :required => true %>
+        <br>
+        <%= password_field_tag :password , nil, class:'form-control', placeholder:'Password', :required => true %>
+        <br>
+        <%=submit_tag 'Log In', class: "btn btn-primary"%>
+      <%end%>
+      <br>
+      
+        <p>Log In With <%=link_to image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThCuQzA6GQf1JbgkvFCUvDxAN0S5yOiYvdog&usqp=CAU",width: 50, height: 50 ), '/auth/google_oauth2', method:'post' %></p>
+        
+      <br>
+      <h3>Or Sign Up</h3>
+        <%=form_for @user, class:'form-group' do |f| %>
+          <%=f.text_field :email, class:"form-control", placeholder:'Email', :required => true %>
+          <br>
+          <%=f.password_field :password, class:"form-control", placeholder:'Password' %>
+          <br>
+          <%=f.password_field :password_confirmation, class:"form-control", placeholder:'Confirm Password'%>
+          <br>
+          <div class="text-center"><br><%=f.submit  class: "btn btn-primary "%></div>
+        <%end%>
+    </div>
+  </div>
+
+</div>
