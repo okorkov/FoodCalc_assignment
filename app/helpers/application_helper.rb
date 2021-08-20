@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def current_user
-    Guest.find_by(id: session[:user_id])
+    User.find_by(id: session[:user_id])
   end
 
   def logged_in?
@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def require_login
-    # render 'viewpath' if session[:user_id].nil?
+    render 'errors/not_logged_in', :layout => nil if session[:user_id].nil?
   end
 
 end

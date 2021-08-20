@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       render "application/welcome"
     else
       if user && user.authenticate(params[:password])
-        session[:user] = user.id
+        session[:user_id] = user.id
         redirect_to user_lists_path(user)
       else
         @error = "Invalid password"
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
     user.password = SecureRandom.hex(10) if user.password_digest.nil?
     user.save
     if user && user.id
-      session[:user] = user.id
+      session[:user_id] = user.id
       redirect_to user_lists_path(user)
     else
       redirect_to root_path
