@@ -8,4 +8,12 @@ class ListsController < ApplicationController
     @lists = current_user.lists
   end
 
+  def new
+    @list = List.new
+  end
+
+  def create
+    raise params.inspect
+  end
+
 end

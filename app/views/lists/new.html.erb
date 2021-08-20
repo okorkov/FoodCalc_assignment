@@ -1,0 +1,9 @@
+<div class="display-4 text-center">Create a new list</div>
+<br>
+<%=form_for new_user_list_path(current_user, @list), class:'form-group' do |f|%>
+  <%=f.text_field :name, class:"form-control", placeholder:'name', :required => true %>
+  <br>
+  <div style='justify-content:center; text-align:center;'>
+    <%=f.submit 'Create New List', class: "btn btn-primary "%>
+  </div>
+<%end%>
