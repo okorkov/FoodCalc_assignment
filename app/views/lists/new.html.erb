@@ -1,9 +1,25 @@
 <div class="display-4 text-center">Create a new list</div>
 <br>
-<%=form_for new_user_list_path(current_user, @list), class:'form-group' do |f|%>
-  <%=f.text_field :name, class:"form-control", placeholder:'name', :required => true %>
-  <br>
-  <div style='justify-content:center; text-align:center;'>
-    <%=f.submit 'Create New List', class: "btn btn-primary "%>
+<div style="justify-content: center; text-align: center; display: flex;">
+  <div style="width: 60%; min-width:500px;">
+    <%=form_for [current_user, @list], class:'form-group' do |f|%>
+      <%=f.text_field :name, class:"form-control", placeholder:'name', :required => true %>
+      <br>
+      <%= f.label "Make List favorite" %> 
+      <br>
+      <%=f.check_box :is_favorite%>
+      <br>
+      <h3>Add Items to the list</h3>
+
+      <%=collection_check_boxes(:list, :item_ids, Item.all, :id, :name) do |item|%>
+        <br>
+        <%=item.label(:"data-value" => item.value) { item.check_box + item.text }%>
+      <%end%>
+
+      <br> <br/>
+      <div style='justify-content:center; text-align:center;'>
+        <%=f.submit 'Create New List', class: "btn btn-primary "%>
+      </div>
+    <%end%>
   </div>
-<%end%>
+</div>
