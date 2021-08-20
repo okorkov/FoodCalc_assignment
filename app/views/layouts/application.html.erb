@@ -23,7 +23,7 @@
           <a class="nav-link active" aria-current="page" href=<%=user_lists_path(current_user)%>>Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Favorites</a>
+          <a class="nav-link" href="/users/<%=session[:user_id]%>/lists/favorites">Favorites</a>
         </li>
         <li class="nav-item">
           <%=form_tag "/sessions/#{session[:user_id]}", method:'delete', class:"nav-item nav-link" do%>

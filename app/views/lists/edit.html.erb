@@ -1,1 +1,31 @@
-edit
+<div class="display-4 text-center" >Edit '<%=@list.name%>' list</div>
+<br>
+<div style="justify-content: center; text-align: center; display: flex;">
+  <div style="width: 60%; min-width:500px;">
+    <%=form_for [current_user, @list], class:'form-group' do |f|%>
+      <%=f.text_field :name, class:"form-control", placeholder:'name', :required => true %>
+      <br>
+      <%= f.label "Make List favorite" %> 
+      <br>
+      <%=f.check_box :is_favorite%>
+      <br>
+      <h3>Add Items to the list</h3>
+
+      <%=collection_check_boxes(:list, :item_ids, Item.all, :id, :name) do |item|%>
+        <br>
+        <%=item.label(:"data-value" => item.value) { item.check_box + item.text }%>
+      <%end%>
+
+      <br> <br/>
+      <div style='justify-content:center; text-align:center;'>
+        <%=f.submit 'Update List', class: "btn btn-primary "%>
+      </div>
+    <%end%>
+      <br> <br/>
+      <div style="padding-bottom: ">
+        <%=form_tag user_list_path(current_user, @list), method:"delete" do %>
+          <%=submit_tag "Delete List", class:"btn btn-danger"%>
+        <%end%>
+      </div>
+  </div>
+</div>

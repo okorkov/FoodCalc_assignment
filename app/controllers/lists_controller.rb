@@ -29,12 +29,21 @@ class ListsController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    list = List.find_by(id: params[:id])
+    list.update(list_params)
+    redirect_to user_list_path(current_user, list)
   end
 
   def destroy
-    
+    List.find_by(id: params[:id]).destroy
+    redirect_to user_lists_path(current_user)
   end
+
+  def favorites
+    @lists = current_user.lists.where(is_favorite: true)
+    render :index
+  end
+  
 
   private
 
